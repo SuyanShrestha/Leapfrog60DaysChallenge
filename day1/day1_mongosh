@@ -1,0 +1,34 @@
+// Since I didnt save the commands that I actually implemented on my mongosh, these are just some dummy commands i wrote over to grasp basics of what i learnt today
+
+// Use a database named 'trialDB'
+use trialDB
+
+// Create a collection named 'students' and insert accordingly
+db.students.insertMany([
+   { name: "Suyan", age: 20, subjects: ["Math", "English"] },
+   { name: "Shristi", age: 22, subjects: ["Science", "English"] },
+   { name: "Alex", age: 21, subjects: ["Math", "Science"] },
+   { name: "Kriti", age: 20, subjects: ["English", "History"] }
+])
+
+// match
+db.students.aggregate([
+   { $match : { score : { $gt : 70, $lt : 90 } } }
+])
+
+// sort
+db.students.aggregate([
+   { $sort : { age : -1 } }
+])
+
+// comparision
+db.students.find( { qty: { $gt: 20 } } )
+db.students.find( { qty: { $lt: 20 } } )
+db.students.find( { qty: { $gte: 20 } } )
+db.students.find( { qty: { $eq: 20 } } )
+db.students.find( { qty: { $lte: 20 } } )
+
+// group
+db.students.aggregate([
+   { $group : { _id : "$age", count : { $sum : 1 } } }
+])
