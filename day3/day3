@@ -1,0 +1,45 @@
+// Let's first insert some documents first
+db.citizens.insertMany([
+    { _id: 1, name: "Suyan", age: 25, hobbies: ["Reading", "Cooking"], identity: { hasCitizenship: true, hasPassport: true } },
+    { _id: 2, name: "Shristi", age: 28, hobbies: ["Hiking", "Dancing"], identity: { hasCitizenship: true, hasPassport: false } },
+    { _id: 3, name: "Alex", age: 22, hobbies: ["Gaming", "Swimming"], identity: { hasCitizenship: true, hasPassport: true } },
+    { _id: 4, name: "Kriti", age: 27, hobbies: ["Reading", "Painting"], identity: { hasCitizenship: true, hasPassport: false } },
+    { _id: 5, name: "Niks", age: 24, hobbies: ["Cooking", "Dancing"], identity: { hasCitizenship: true, hasPassport: true } }
+])
+
+--------------------------------------------------------------------------------------------------------
+
+// COMPARISION OPERATORS
+
+// equal and not equal to
+db.citizens.find({age: {$eq: 25}})
+db.citizens.find({age: {$ne: 25}})
+
+// greater than, less than
+db.citizens.find({age: {$gt: 25}})
+db.citizens.find({age: {$gte: 25}})
+db.citizens.find({age: {$lt: 25}})
+db.citizens.find({age: {$lte: 25}})
+
+// yesari embedded documents vitra janu paryo , like yeta hasPassport inside document of identity field, then key must be string
+db.citizens.find({"identity.hasPassport": {$ne: false}})
+
+// $in and $nin le chahi list jasari linxa values lai, ani only returns docs with values present or absent in this list respectively
+db.citizens.find({_id: {$in: [1,2]}})
+db.citizens.find({_id: {$nin: [1,2]}})
+
+// we can also give multiple like this
+db.citizens.find({hobbies: {$in: ['Reading', 'Hiking'], $nin: ['Dancing']}})
+db.citizens.find({hobbies: {$in: ['Reading', 'Dancing'], $ne: 'Painting'}, age: {$gte: 25, $lte: 28}})
+
+--------------------------------------------------------------------------------------------------------
+
+// LOGICAL OPERATORS
+
+// takes values as list, jasma chahi individual json haru hunxa, they tell conditions to meet
+db.citizens.find({$or: [{age: {$eq: 25}}, {age: {$eq: 28}}]})
+db.citizens.find({$nor: [{age: {$eq: 25}}, {age: {$eq: 28}}]})
+db.citizens.find({$and: [{hobbies: {$in: ['Reading', 'Dancing', 'Swimming']}}, {"identity.hasPassport": {$eq: true}}, {age: {$eq: 25}}]})
+
+// $not operator
+db.citizens.find({$and: [{_id: {$not: {$eq: 2}}}, {_id: {$not: {$gte: 3}}}]})
