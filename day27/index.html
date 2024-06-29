@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug on Wire</title>
+    <link rel="icon" href="assets/ninja.jpeg">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div id="instructionScreen">
+        <h1 style="font-size: 3rem;">Bug on Wire : Shuriken Circuit!</h1>
+        <button id="instructionsButton">Instructions</button>
+        <button id="characterButton">Character</button>
+        <button id="scoreboardButton">Scoreboard</button>
+        <h1>Press Spacebar to Start the Game</h1>
+      </div>
+
+      <dialog id="instructionsDialog" class="hide">
+        <p><b>Here are the instructions for the game: ...</b></p>
+        <p>Press Up (⬆️) arrow key to move your character up.</p>
+        <p>Press Down (⬇️) arrow key to move your character down.</p>
+        <p>
+          Pick your character, and help him dodge as many obstacles as you can.
+        </p>
+        <p>Press Spacebar to restart the game! Have fun!</p>
+      </dialog>
+
+      <dialog id="characterDialog" class="hide">
+        <button id="pickIchigo">Ichigo Kurasaki</button>
+        <button id="pickSuyan">Suyan Zetanabe</button>
+        <button id="pickMadara">Madara Uchiha</button>
+      </dialog>
+
+      <dialog id="scoreboardDialog" class="hide">
+        <h1>Scoreboard</h1>
+        <p>Latest Score: <span id="myScore">000</span></p>
+        <p>High Score: <span id="myHighScore">000</span></p>
+      </dialog>
+
+      <div class="canvas-div">
+        <div class="scores">
+          <h1 id="score">000</h1>
+          <h1 id="highScore">000</h1>
+        </div>
+        <canvas id="gameCanvas" width="1200" height="800"></canvas>
+      </div>
+    </main>
+
+    <script src="scripts.js" type="module"></script>
+  </body>
+</html>

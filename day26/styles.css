@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  font-family: "Space Grotesk", sans-serif;
+  background: url("assets/bg-img3.png") no-repeat;
+  background-size: cover;
+}
+
+#instructionScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+}
+
+#instructionScreen button,
+#characterDialog button {
+  font-size: 2.25rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  border: 1px solid white;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: black;
+  color: white;
+  cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#instructionScreen button::before,
+#characterDialog button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+#instructionScreen button:hover::before,
+#characterDialog button:hover::before {
+  left: 0;
+}
+
+#instructionScreen button:hover,
+#characterDialog button:hover {
+  color: black;
+}
+
+.canvas-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  display: none;
+}
+
+.canvas-div .scores {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+}
+
+#gameCanvas {
+  border: 1px solid #000000;
+  background: url("assets/bg-img.jpg") no-repeat;
+  background-size: cover;
+}
+
+#scoreboard {
+  border: 1px solid black;
+}
+
+#instructionsDialog,
+#scoreboardDialog,
+#characterDialog {
+  color: white;
+  border: 1px solid white;
+  border-radius: 3rem;
+  background: black;
+  width: 60vw;
+  height: 70vh;
+  padding: auto 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+#characterDialog {
+  gap: 5rem;
+  z-index: 2;
+}
+
+#instructionsDialog.hide,
+#scoreboardDialog.hide,
+#characterDialog.hide {
+  display: none;
+}
+
+.canvas-div.hide,
+#instructionScreen.hide {
+  display: none;
+}
